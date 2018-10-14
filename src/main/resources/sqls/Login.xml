@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.som.project.dao">
+
+	<select id="login" resultType="com.som.project.model.UserDto"  parameterType="com.som.project.model.UserDto">
+		SELECT ID, PASSWORD, NAME, EMAIL
+		FROM USER
+		WHERE ID=#{id} AND PASSWORD=#{password}
+	</select>
+  
+  	<select id="regiIdCheck" resultType="java.lang.String" parameterType="java.lang.String">
+  		SELECT ID
+  		FROM USER
+  		WHERE ID = #{id}
+  	</select>
+  	
+  	<insert id="register" parameterType="com.som.project.model.UserDto">
+  		INSERT INTO USER (ID, PASSWORD, NAME, EMAIL)
+  		VALUES (#{id}, #{password}, #{name}, #{email})
+  	</insert>
+  	
+</mapper>
