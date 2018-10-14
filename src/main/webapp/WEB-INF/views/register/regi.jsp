@@ -17,7 +17,7 @@
 	</tr>
 	<tr>
 		<td>비밀번호</td>
-		<td><input type="password" name="password" required="required"></td>
+		<td><input type="password" name="password" id="password" required="required"><span id="pwCheck"></span></td>
 	</tr>
 	<tr>
 		<td>이름</td>
@@ -34,7 +34,9 @@
 <script type="text/javascript">
 $("#id").blur(function () {
 	var id = $(this).val();
-	//1. 조건 확인 (4자이상 10자 이하) 	//2. 존재하는 아이디 확인  //3.
+	//Af. 조건 확인 (4자이상 10자 이하) 	
+	
+	// 존재하는 아이디 확인  
 	$.ajax({
 		type : "POST",
 		data : { 
@@ -45,6 +47,7 @@ $("#id").blur(function () {
 			if(data){
 				$("#idCheck").empty().append("사용 가능한 아이디입니다.");
 				$("#idCheck").css("color", "green");
+				$("#idCheck").title("true");
 			}else{
 				$("#idCheck").empty().append("이미 사용중인 아이디입니다.");
 				$("#idCheck").css("color", "red");
@@ -53,6 +56,15 @@ $("#id").blur(function () {
 	  	error : function(xhr, status, error) {
 	    }
 	});
+});
+
+$("#password").blur(function () {
+	var password = $(this).val();
+	if(password.length<4 || password.length>15){
+		$("#pwCheck").empty().append("4자 이상, 15자 이하로 입력"); //Af. 특수문자 포함, 대소문자 포함 
+	}else {
+		$("#pwCheck").empty().append("사용 가능한 비밀번호입니다.");
+	}
 });
 
 $("#regi").click(function () {

@@ -34,4 +34,8 @@ public class BbsService {
 	public void bbsDelete(int seq) {
 		bbsDao.bbsDelete(seq);
 	}
+	
+	public List<BbsDto> bbsSearch(String search, String item){
+		return bbsDao.bbsSearch(search, item);
+	}
 }

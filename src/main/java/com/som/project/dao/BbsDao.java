@@ -37,7 +37,18 @@ public class BbsDao {
 		sqlsession.delete("bbsDelete", seq);
 	}
 
-	public List<BbsDto> bbsSearch(String search) {
-		return sqlsession.selectList("bbsSearch", search);
+	public List<BbsDto> bbsSearch(String search, String item) {
+		
+		if(item.equals("title")) {
+			return sqlsession.selectList("titleSearch", search);
+	
+		}else if(item.equals("writer")) {
+			return sqlsession.selectList("writerSearch", search);
+		
+		}else if(item.equals("total")) {
+			return sqlsession.selectList("totalSearch", search);
+		}
+		
+		return null;
 	}
 }

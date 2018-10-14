@@ -33,9 +33,22 @@
 		WHERE SEQ = #{seq}
 	</update>
 	
-	<select id="bbsSearch" resultType="com.som.project.model.BbsDto" parameterType="java.lang.String">
+	<select id="titleSearch" resultType="com.som.project.model.BbsDto" parameterType="java.lang.String">
 		SELECT SEQ, ID, TITLE, CONTENT, READCOUNT, WDATE
 		FROM BBS
-		WHERE STATUS = 'Y' AND TITLE = #{search}
+		WHERE STATUS = 'Y' AND TITLE = #{search} 
+	</select> 
+	
+	<select id="writerSearch" resultType="com.som.project.model.BbsDto" parameterType="java.lang.String">
+		SELECT SEQ, ID, TITLE, CONTENT, READCOUNT, WDATE
+		FROM BBS
+		WHERE STATUS = 'Y' AND  ID = #{search} 
 	</select>
+
+	<select id="totalSearch" resultType="com.som.project.model.BbsDto" parameterType="java.lang.String">
+		SELECT SEQ, ID, TITLE, CONTENT, READCOUNT, WDATE
+		FROM BBS
+		WHERE TITLE = #{search} OR ID = #{search} AND STATUS = 'Y' 
+	</select> 
+	
 </mapper>

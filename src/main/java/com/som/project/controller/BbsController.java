@@ -3,6 +3,8 @@ package com.som.project.controller;
 import java.util.List;
 import java.util.Locale;
 
+import javax.jws.WebParam.Mode;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -59,10 +61,12 @@ public class BbsController {
 	}
 	
 	@RequestMapping(value="/bbsSearch", method = RequestMethod.GET)
-	public String bbsSearch(String search) {
-		System.out.println("bbsSearch : " + search);
-		//bbsService.bbsSearch(seq);
-		return "redirect:bbs";
+	public String bbsSearch(Model model, String search, String item) {
+		List<BbsDto> bbsList = bbsService.bbsSearch(search, item);
+		model.addAttribute("bbsList", bbsList);
+		model.addAttribute("search", search);
+		model.addAttribute("item", item);
+		return "bbs/bbs";
 	}
 	
 	
