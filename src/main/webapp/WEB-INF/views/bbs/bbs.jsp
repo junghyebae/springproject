@@ -42,7 +42,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach items="${bbsList }" var="bbs">
+						<c:forEach items="${bbsList }" var="bbs" >
 							<tr>
 								<td>${bbs.seq }</td>
 								<td><a href="bbsDetail?seq=${bbs.seq }">${bbs.title }</a></td>
@@ -51,6 +51,7 @@
 							</tr>
 						</c:forEach>
 					</tbody>
+					
 				</table>
 			</div>
 		</div>
