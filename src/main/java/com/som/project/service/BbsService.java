@@ -23,8 +23,8 @@ public class BbsService {
 		return bbsDao.bbsWrite(bbsDto);
 	}
 	
-	public BbsDto bbsDetail(int seq) {
-		return bbsDao.bbsDetail(seq);
+	public BbsDto bbsDetail(int seq, String loginId) {
+		return bbsDao.bbsDetail(seq, loginId);
 	}
 	
 	public boolean bbsUpdate(BbsDto bbsDto) {

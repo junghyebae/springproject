@@ -37,20 +37,23 @@
 						<tr class="active">
 							<th>번호</th>
 							<th>제목</th>
+							<td>조회수</td>
 							<th>글쓴이</th>
 							<th>날짜</th>
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach items="${bbsList }" var="bbs">
+						<c:forEach items="${bbsList }" var="bbs" >
 							<tr>
 								<td>${bbs.seq }</td>
 								<td><a href="bbsDetail?seq=${bbs.seq }">${bbs.title }</a></td>
+								<td>${bbs.readcount }</td>
 								<td>${bbs.id }</td>
 								<td>${fn:substring(bbs.wdate,5,10) }</td>
 							</tr>
 						</c:forEach>
 					</tbody>
+					
 				</table>
 			</div>
 		</div>

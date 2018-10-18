@@ -31,6 +31,7 @@
 		 <button type="button"  class="btn btn-primary" id="write" > 글쓰기</button>
 	</div>
 	
+	
 	</div>
 </form>
 
@@ -46,8 +47,6 @@
 			success:function (data){
 				if(data==1){
 					location.href="bbs";
-				}else{
-					//...작성x  (insert error )
 				}
 			}, 
 			error:function(request,status,error){

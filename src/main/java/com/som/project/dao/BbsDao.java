@@ -24,8 +24,14 @@ public class BbsDao {
 		return i;
 	}
 	
-	public BbsDto bbsDetail(int seq) {
-		return sqlsession.selectOne("bbsDetail", seq);
+	public BbsDto bbsDetail(int seq, String loginId) {
+		BbsDto dto = sqlsession.selectOne("bbsDetail", seq);
+		
+		// dto의 아이디가 로그인아이디와 같지 않을 경우 조회수 증가 시켜준다.
+		if(!dto.getId().equals(loginId)) {
+			sqlsession.update("bbsReadCount", seq);
+		}
+		return dto;
 	}
 	
 	public boolean bbsUpdate(BbsDto bbsDto) {

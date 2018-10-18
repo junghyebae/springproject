@@ -3,6 +3,8 @@ package com.som.project.controller;
 import java.util.List;
 import java.util.Locale;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -40,8 +42,9 @@ public class BbsController {
 	}
 	
 	@RequestMapping(value = "/bbsDetail", method = RequestMethod.GET)
-	public String bbsDetail(Model model, int seq) {
-		BbsDto bbsdto = bbsService.bbsDetail(seq);
+	public String bbsDetail(Model model, int seq, HttpServletRequest req) {
+		String loginId = req.getSession().getId();
+		BbsDto bbsdto = bbsService.bbsDetail(seq, loginId);
 		model.addAttribute("bbs", bbsdto);
 		return "bbs/bbsDetail";
 	}

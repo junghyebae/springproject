@@ -6,6 +6,7 @@
 <html>
 <head>
 <script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/jquery-3.3.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
 <meta charset="UTF-8">
 </head>
 <body>
@@ -32,9 +33,15 @@
 </form>
 
 <script type="text/javascript">
+var idcheck = false;
+
 $("#id").blur(function () {
+	
 	var id = $(this).val();
-	//1. 조건 확인 (4자이상 10자 이하) 	//2. 존재하는 아이디 확인  //3.
+	
+	idcheck = false;
+	$("#idCheck").empty();
+
 	$.ajax({
 		type : "POST",
 		data : { 
@@ -45,32 +52,38 @@ $("#id").blur(function () {
 			if(data){
 				$("#idCheck").empty().append("사용 가능한 아이디입니다.");
 				$("#idCheck").css("color", "green");
+				idcheck = true;
 			}else{
 				$("#idCheck").empty().append("이미 사용중인 아이디입니다.");
 				$("#idCheck").css("color", "red");
 			}
 		},
-	  	error : function(xhr, status, error) {
+	  	error : function(request, status, error) {
+			consloe.log("code: " + request.status  + "message: " + request.responseText + "error: " + error);
+
 	    }
 	});
 });
 
 $("#regi").click(function () {
-	$.ajax({
-		type : "POST",
-		data : $("#_form").serialize(),
-		url : "./regiAf",
-		success : function (data) {
-			if(data){
-				alert("환영합니다");
-				location.href="./";
-			}else{
-				alert("회원가입 실패");
-			}		
-		},
-		error : function (xhr, status, error) {
-		}
-	});
+	if(idcheck){
+		$.ajax({
+			type : "POST",
+			data : $("#_form").serialize(),
+			url : "./regiAf",
+			success : function (data) {
+				if(data){
+					alert("환영합니다");
+					location.href="./";
+				}else{
+					alert("회원가입 실패");
+				}		
+			},
+			error : function (request, status, error) {
+				consloe.log("code: " + request.status  + "message: " + request.responseText + "error: " + error);
+			}
+		});
+	}
 });
 </script>
 </body>
