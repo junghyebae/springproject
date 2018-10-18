@@ -6,9 +6,26 @@
 <html>
 <head>
 <script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/jquery-3.3.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
 <meta charset="UTF-8">
 </head>
 <body>
+<div>
+	{{message}}
+</div>
+
+<script>
+var app = new Vue({
+	  el: '#app',
+	  data: {
+	    message: '안녕하세요 Vue!'
+	  }
+	})
+
+</script>
+
+
+
 <form id="_form" method="post">
 <table>
 	<tr>

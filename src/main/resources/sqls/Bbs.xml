@@ -21,6 +21,12 @@
   		WHERE SEQ = #{seq}
   	</select>
   	
+  	<update id="bbsReadCount" parameterType="java.lang.Integer">
+  		UPDATE BBS
+  		SET READCOUNT + 1
+  		WHERE SEQ = #{seq}
+  	</update>
+  	
   	<update id="bbsUpdate" parameterType="com.som.project.model.BbsDto">
   		UPDATE BBS
   		SET TITLE = #{title}, CONTENT = #{content}
@@ -38,4 +44,5 @@
 		FROM BBS
 		WHERE STATUS = 'Y' AND TITLE = #{search}
 	</select>
+	
 </mapper>
