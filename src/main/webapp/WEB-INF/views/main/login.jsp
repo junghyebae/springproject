@@ -24,51 +24,51 @@
 	<button type="button" id="_btnLogin">로그인</button>
 </div>
 
-<script type="text/javascript">
-$("#_btnLogin").click(function() {
-	if($("#user_id").val() == ""){
-		alert($("#user_id").attr("data-msg") + " 입력해 주십시오" );
-		$("#user_id").focus();
-	} else if($("#user_pw").val() == ""){
-		alert($("#user_pw").attr("data-msg") + " 입력해 주십시오" );
-		$("#user_pw").focus();
-	} else{  
-		
-		var formData = $("#_form").serialize();
-		$.ajax({
-		    type : "post",
-			data : formData,
-		    url : "./loginAf",
-		    success : function(data) {
-		    	alert(data);
-		       if(data == "로그인 성공"){
-		    	   location.href="./";
-		       }else {
-		    	   location.href="./login";
-		       }
-		    },
-		    error : function(xhr, status, error) {
-		       alert("아이디 또는 비밀번호를 다시 확인하세요");
-		    }
-		});
-	}
-});
-
-
-$("#user_id").keypress(function(event) {
-	if(event.which == "13"){
-		$("#_btnLogin").click();
-	}
-});
-
-$("#user_pw").keypress(function() {
-	if(event.which == "13"){
-		$("#_btnLogin").click();
-	}
-});
-
-
-</script>
+	<script type="text/javascript">
+	$("#_btnLogin").click(function() {
+		if($("#user_id").val() == ""){
+			alert($("#user_id").attr("data-msg") + " 입력해 주십시오" );
+			$("#user_id").focus();
+		} else if($("#user_pw").val() == ""){
+			alert($("#user_pw").attr("data-msg") + " 입력해 주십시오" );
+			$("#user_pw").focus();
+		} else{  
+			
+			var formData = $("#_form").serialize();
+			$.ajax({
+			    type : "post",
+				data : formData,
+			    url : "./loginAf",
+			    success : function(data) {
+			    	alert(data);
+			       if(data == "로그인 성공"){
+			    	   location.href="./";
+			       }else {
+			    	   location.href="./login";
+			       }
+			    },
+			    error : function(xhr, status, error) {
+			       alert("아이디 또는 비밀번호를 다시 확인하세요");
+			    }
+			});
+		}
+	});
+	
+	
+	$("#user_id").keypress(function(event) {
+		if(event.which == "13"){
+			$("#_btnLogin").click();
+		}
+	});
+	
+	$("#user_pw").keypress(function() {
+		if(event.which == "13"){
+			$("#_btnLogin").click();
+		}
+	});
+	
+	
+	</script>
 
 </body>
 </html>

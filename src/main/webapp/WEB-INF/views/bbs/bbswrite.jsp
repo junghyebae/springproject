@@ -33,29 +33,29 @@
 	</div>
 </form>
 
-<script type="text/javascript">
- $(document).ready(function() {
-	$("#write").click(function() {
-		var formData = $("#_form").serialize();
-	
-		$.ajax({
-			type : "post",
-			url : "bbsWriteAf",
-			data : formData,
-			success:function (data){
-				if(data==1){
-					location.href="bbs";
-				}else{
-					//...작성x  (insert error )
-				}
-			}, 
-			error:function(request,status,error){
-	             console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-	        }
-		});
+	<script type="text/javascript">
+	 $(document).ready(function() {
+		$("#write").click(function() {
+			var formData = $("#_form").serialize();
 		
+			$.ajax({
+				type : "post",
+				url : "bbsWriteAf",
+				data : formData,
+				success:function (data){
+					if(data==1){
+						location.href="bbs";
+					}else{
+						//...작성x  (insert error )
+					}
+				}, 
+				error:function(request,status,error){
+		             console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		        }
+			});
+			
+		});
 	});
-});
-</script>
+	</script>
 </body>
 </html>

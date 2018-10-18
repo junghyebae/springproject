@@ -43,8 +43,6 @@ public class BbsController {
 	}
 	
 	@RequestMapping(value = "/bbsDetail", method = RequestMethod.GET)
-	public String bbsDetail(Model model, int seq) {
-		BbsDto bbsdto = bbsService.bbsDetail(seq);
 	public String bbsDetail(Model model, int seq, HttpServletRequest req) {
 		String loginId = req.getSession().getId();
 		BbsDto bbsdto = bbsService.bbsDetail(seq, loginId);

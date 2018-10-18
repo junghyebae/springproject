@@ -24,8 +24,12 @@ public class BbsDao {
 		return i;
 	}
 	
-	public BbsDto bbsDetail(int seq) {
-		return sqlsession.selectOne("bbsDetail", seq);
+	public BbsDto bbsDetail(int seq, String loginId) {
+		BbsDto dto = sqlsession.selectOne("bbsDetail", seq);
+		if(!dto.getId().equals(loginId)) {
+			sqlsession.update("bbsReadCount", seq);
+		}
+		return dto;
 	}
 	
 	public boolean bbsUpdate(BbsDto bbsDto) {

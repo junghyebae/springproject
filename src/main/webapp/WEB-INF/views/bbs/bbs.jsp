@@ -10,17 +10,7 @@
 <meta charset="UTF-8">
 </head>
 <body>
-<script type="text/javascript">
-$(document).ready(function () {
-	$("#searchBtn").click(function () {
-		if($("#search").val() == "" ) {
-			alert("검색어 입력해 주세요");
-		}else {
-			$("#searchForm").submit();
-		}
-	});
-});
-</script>
+
 <form action="bbsSearch" id="searchForm">
 	<div>
 		<table>
@@ -55,6 +45,7 @@ $(document).ready(function () {
 						<tr class="active">
 							<th>번호</th>
 							<th>제목</th>
+							<th>조회수</th>
 							<th>글쓴이</th>
 							<th>날짜</th>
 						</tr>
@@ -64,6 +55,7 @@ $(document).ready(function () {
 							<tr>
 								<td>${bbs.seq }</td>
 								<td><a href="bbsDetail?seq=${bbs.seq }">${bbs.title }</a></td>
+								<td>${bbs.readcount }</td>
 								<td>${bbs.id }</td>
 								<td>${fn:substring(bbs.wdate,5,10) }</td>
 							</tr>
@@ -78,6 +70,17 @@ $(document).ready(function () {
 		<a href="bbsWrite">글쓰기</a>
 	</c:if>
 </form>	
-	
+
+	<script type="text/javascript">
+	$(document).ready(function () {
+		$("#searchBtn").click(function () {
+			if($("#search").val() == "" ) {
+				alert("검색어 입력해 주세요");
+			}else {
+				$("#searchForm").submit();
+			}
+		});
+	});
+	</script>
 </body>
 </html>

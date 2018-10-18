@@ -21,7 +21,13 @@
   		WHERE SEQ = #{seq}
   	</select>
   	
-  	<update id="bbsUpdate" parameterType="com.som.project.model.BbsDto">
+  	<select id="bbsReadCount" parameterType="java.lang.Integer">
+  		UPDATE BBS
+  		SET READCOUNT = READCOUNT + 1
+  		WHERE SEQ = #{seq}
+  	</select>
+  	
+	<update id="bbsUpdate" parameterType="com.som.project.model.BbsDto">
   		UPDATE BBS
   		SET TITLE = #{title}, CONTENT = #{content}
   		WHERE SEQ = #{seq}
