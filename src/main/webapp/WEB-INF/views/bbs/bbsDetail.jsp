@@ -9,24 +9,6 @@
 <meta charset="UTF-8">
 </head>
 <body>
-
-	<form action="bbsUpdate" id="_form" method="post">
-		<input type="hidden" value="${bbs.seq }" id="seq" name="seq">
-		<div>
-			<input type="text" name="title" class="bbs" id="title" value="${bbs.title}" readonly>
-		</div>
-		<div>${fn:substring(bbs.wdate,0,10) }</div>
-		<div>
-			<textarea name="content" class="bbs" readonly>${bbs.content }</textarea>
-		</div>
-		<c:if test="${login.id == bbs.id}">
-			<button type="button" class="update" id="update">수정</button>
-			<button type="button" class="updateAf" id="cancel" hidden="hidden">취소</button>
-			<button type="submit" class="updateAf" hidden="hidden">수정하기</button>
-			<button type="button" class="update" id="delete">삭제</button>
-		</c:if>
-	</form>
-	
 	<script type="text/javascript">
 	$(document).ready(function () {
 		$("#update").click(function () {
@@ -51,5 +33,25 @@
 		
 	});
 	</script>
+	
+	
+	<form action="bbsUpdate" id="_form" method="post">
+		<input type="hidden" value="${bbs.seq }" id="seq" name="seq">
+		<div>
+			<input type="text" name="title" class="bbs" id="title" value="${bbs.title}" readonly>
+		</div>
+		<div>${fn:substring(bbs.wdate,0,10) }</div>
+		<div>
+			<textarea name="content" class="bbs" readonly>${bbs.content }</textarea>
+		</div>
+		<c:if test="${login.id == bbs.id}">
+			<button type="button" class="update" id="update">수정</button>
+			<button type="button" class="updateAf" id="cancel" hidden="hidden">취소</button>
+			<button type="submit" class="updateAf" hidden="hidden">수정하기</button>
+			<button type="button" class="update" id="delete">삭제</button>
+		</c:if>
+	</form>
+	
+
 </body>
 </html>

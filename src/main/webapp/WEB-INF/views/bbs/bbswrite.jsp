@@ -4,7 +4,6 @@
 <head>
 <script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/jquery-3.3.1.min.js"></script>
 <meta charset="UTF-8">
-<title>Insert title here</title>
 </head>
 <body>
 <!-- 글 생성시 -->
@@ -31,7 +30,6 @@
 		 <button type="button"  class="btn btn-primary" id="write" > 글쓰기</button>
 	</div>
 	
-	
 	</div>
 </form>
 
@@ -47,6 +45,8 @@
 			success:function (data){
 				if(data==1){
 					location.href="bbs";
+				}else{
+					//...작성x  (insert error )
 				}
 			}, 
 			error:function(request,status,error){

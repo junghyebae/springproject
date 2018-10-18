@@ -23,8 +23,8 @@ public class BbsService {
 		return bbsDao.bbsWrite(bbsDto);
 	}
 	
-	public BbsDto bbsDetail(int seq, String loginId) {
-		return bbsDao.bbsDetail(seq, loginId);
+	public BbsDto bbsDetail(int seq) {
+		return bbsDao.bbsDetail(seq);
 	}
 	
 	public boolean bbsUpdate(BbsDto bbsDto) {
@@ -33,5 +33,9 @@ public class BbsService {
 	
 	public void bbsDelete(int seq) {
 		bbsDao.bbsDelete(seq);
+	}
+	
+	public List<BbsDto> bbsSearch(String search, String item){
+		return bbsDao.bbsSearch(search, item);
 	}
 }
