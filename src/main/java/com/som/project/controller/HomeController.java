@@ -33,7 +33,7 @@ public class HomeController {
 	@ResponseBody
 	@RequestMapping(value = "loginAf", produces = "application/String; charset=utf-8", method = RequestMethod.POST )
 	public String loginAf(UserDto dto, HttpServletRequest req) {
-
+		
 		UserDto login = null;
 		try {
 			login = userService.login(dto);
