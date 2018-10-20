@@ -11,7 +11,7 @@
 </head>
 <body>
 
-<form action="bbsSearch" id="searchForm">
+<form action="bbs" id="searchForm">
 	<div>
 		<table>
 			<tr>
@@ -28,9 +28,7 @@
 			</tr>
 		</table>
 	</div>
-</form>
-
-<form>
+	
 	<div class="row">
 		<div class="col-sm-12">
 			<div class="table-responsive">

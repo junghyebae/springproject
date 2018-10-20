@@ -7,7 +7,16 @@
 	<select id="bbsList" resultType="com.som.project.model.BbsDto">
 		SELECT SEQ, ID, TITLE, CONTENT, READCOUNT, WDATE
 		FROM BBS
-		WHERE STATUS ='Y'
+		WHERE STATUS ='Y' 
+	 <if test='item.equals("total") and search != null and search != ""'>
+			AND (TITLE = #{search} OR ID = #{search})
+		</if>
+		<if test='item.equals("title") and search != null and search != ""'>
+		 	AND TITLE = #{search} 
+		</if>
+		<if test='item.equals("writer") and search != null and search != ""'>
+			AND ID = #{search} 
+		</if>
 	</select>
 	
 	<insert id="bbsWrite" parameterType="com.som.project.model.BbsDto">
@@ -38,23 +47,5 @@
 		SET STATUS = 'N'
 		WHERE SEQ = #{seq}
 	</update>
-	
-	<select id="titleSearch" resultType="com.som.project.model.BbsDto" parameterType="java.lang.String">
-		SELECT SEQ, ID, TITLE, CONTENT, READCOUNT, WDATE
-		FROM BBS
-		WHERE STATUS = 'Y' AND TITLE = #{search} 
-	</select> 
-	
-	<select id="writerSearch" resultType="com.som.project.model.BbsDto" parameterType="java.lang.String">
-		SELECT SEQ, ID, TITLE, CONTENT, READCOUNT, WDATE
-		FROM BBS
-		WHERE STATUS = 'Y' AND  ID = #{search} 
-	</select>
 
-	<select id="totalSearch" resultType="com.som.project.model.BbsDto" parameterType="java.lang.String">
-		SELECT SEQ, ID, TITLE, CONTENT, READCOUNT, WDATE
-		FROM BBS
-		WHERE TITLE = #{search} OR ID = #{search} AND STATUS = 'Y' 
-	</select> 
-	
 </mapper>

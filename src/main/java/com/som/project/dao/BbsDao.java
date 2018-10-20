@@ -1,6 +1,7 @@
 package com.som.project.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +16,8 @@ public class BbsDao {
 	@Autowired
 	SqlSession sqlsession;
 	
-	public List<BbsDto> bbsList() {
-		return  sqlsession.selectList("bbsList");
+	public List<BbsDto> bbsList(Map<String, String> map) {
+		return sqlsession.selectList("bbsList", map);
 	}
 
 	public int bbsWrite(BbsDto bbsDto) {
@@ -26,6 +27,7 @@ public class BbsDao {
 	
 	public BbsDto bbsDetail(int seq, String loginId) {
 		BbsDto dto = sqlsession.selectOne("bbsDetail", seq);
+		//서비스로 옮기기 
 		if(!dto.getId().equals(loginId)) {
 			sqlsession.update("bbsReadCount", seq);
 		}
@@ -41,18 +43,4 @@ public class BbsDao {
 		sqlsession.delete("bbsDelete", seq);
 	}
 
-	public List<BbsDto> bbsSearch(String search, String item) {
-		
-		if(item.equals("title")) {
-			return sqlsession.selectList("titleSearch", search);
-	
-		}else if(item.equals("writer")) {
-			return sqlsession.selectList("writerSearch", search);
-		
-		}else if(item.equals("total")) {
-			return sqlsession.selectList("totalSearch", search);
-		}
-		
-		return null;
-	}
 }
