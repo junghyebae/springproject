@@ -12,22 +12,24 @@
 <body>
 
 <form action="bbs" id="searchForm">
+<!--  
 	<div>
 		<table>
 			<tr>
 				<td>검색</td>
 				<td>
-					<select name="item">
-						<option value="total"  <c:if test="${item eq 'total' }">selected="selected"</c:if>>전체선택</option>
-						<option value="title"  <c:if test="${item eq 'title' }">selected="selected"</c:if>>제목</option>
-						<option value="writer" <c:if test="${item eq 'writer'}">selected="selected"</c:if>>글쓴이</option>
+					<select name="category">
+						<option value="total" <c:if test="${item eq 'total' }">selected="selected"</c:if>>전체선택</option>
+						<option value="title" <c:if test="${item eq 'title' }">selected="selected"</c:if>>제목</option>
+						<option value="writer"<c:if test="${item eq 'writer'}">selected="selected"</c:if>>글쓴이</option>
 					</select>
 				</td>
 				<td><input type="text" id="search" name="search" value="${search}"></td>
 				<td><input type="button" id="searchBtn" value="검색"></td>
 			</tr>
 		</table>
-	</div>
+	</div> 
+	-->
 	
 	<div class="row">
 		<div class="col-sm-12">

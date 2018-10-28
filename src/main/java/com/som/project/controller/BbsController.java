@@ -1,9 +1,7 @@
 package com.som.project.controller;
 
 import java.util.List;
-import java.util.Locale;
 
-import javax.jws.WebParam.Mode;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.som.project.model.BbsDto;
@@ -26,11 +22,8 @@ public class BbsController {
 	private BbsService bbsService;
 	
 	@RequestMapping(value = "/bbs", method = RequestMethod.GET)
-	public String bbs(Model model, String search, String item) {
-		List<BbsDto> bbsList = bbsService.bbsList(search, item);
-		model.addAttribute("bbsList", bbsList);
-		model.addAttribute("search", search);
-		model.addAttribute("item", item);
+	public String bbs(Model model) {
+		List<BbsDto> bbsList = bbsService.bbsList();
 		model.addAttribute("bbsList", bbsList);
 		return "bbs/bbs";
 	}

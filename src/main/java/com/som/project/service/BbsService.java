@@ -1,8 +1,6 @@
 package com.som.project.service;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,11 +15,8 @@ public class BbsService {
 	@Autowired
 	private BbsDao bbsDao;
 	
-	public List<BbsDto> bbsList(String search, String item) {
-		Map<String, String> map = new HashMap<String, String>();
-		map.put("search", search);
-		map.put("item", item);
-		return bbsDao.bbsList(map);
+	public List<BbsDto> bbsList() {
+		return bbsDao.bbsList();
 	}
 
 	public int bbsWrite(BbsDto bbsDto) {
@@ -29,7 +24,13 @@ public class BbsService {
 	}
 	
 	public BbsDto bbsDetail(int seq, String loginId) {
-		return bbsDao.bbsDetail(seq, loginId);
+		BbsDto dto = bbsDao.bbsDetail(seq, loginId);
+		
+		//조회수 증가
+		if(!dto.getId().equals(loginId)) {
+			bbsDao.bbsReadCount(seq);
+		}
+		return dto;
 	}
 	
 	public boolean bbsUpdate(BbsDto bbsDto) {
