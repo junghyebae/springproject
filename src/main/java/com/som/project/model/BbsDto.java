@@ -11,5 +11,4 @@ public class BbsDto {
 	private String readcount;
 	private String wdate;
 	private String status;
-
 }

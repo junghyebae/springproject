@@ -7,53 +7,32 @@
 </head>
 <body>
 <!-- 글 생성시 -->
-<form id="_form" action="bbswriteAf" method="post" enctype="multipart/form-data">
-    <div class="col-md-9">
-	<div class="form-group"> <!-- userId field -->
-		<label class="control-label " for="id">아이디</label>
-		<input class="form-control" id="id" name="id" type="text" value="${login.id }"/>
-	</div>
-	
-	<div class="form-group"> <!-- "title" field -->
-		<label class="control-label " for="title">제목</label>
-		<input class="form-control" id="title" name="title" type="text" />
-	</div>
-	
-	<div class="form-group"> <!-- content field -->
-		<label class="control-label " for="content">내용</label>
-		<textarea class="form-control" cols="40" id="content" name="content" rows="10"></textarea> 
-	</div>
-	
-	<div class="form-group pull-right">
-		<!-- <button type="submit"  class="btn btn-primary" id="write" > 글쓰기</button>
-		 -->
-		 <button type="button"  class="btn btn-primary" id="write" > 글쓰기</button>
-	</div>
-	
-	</div>
+<form id="_form" action="bbsWriteAf" method="post" enctype="multipart/form-data">
+	<table>
+		<tr>
+			<td><label for="id">아이디</label></td>
+			<td><input id="id" name="id" type="text" value="${login.id }"/><td>
+		</tr>
+		<tr>
+			<td><label for="title">제목</label></td>
+			<td><input id="title" name="title" type="text" /></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td><input type="file" id="fileload" name="fileload"></td>
+		</tr>
+		<tr>
+			<td><label for="content">내용</label></td>
+			<td><textarea cols="40" id="content" name="content" rows="10"></textarea></td>
+		</tr>	
+	</table>
+	<button type="button" id="write"> 글쓰기</button>
 </form>
 
 	<script type="text/javascript">
 	 $(document).ready(function() {
 		$("#write").click(function() {
-			var formData = $("#_form").serialize();
-		
-			$.ajax({
-				type : "post",
-				url : "bbsWriteAf",
-				data : formData,
-				success:function (data){
-					if(data==1){
-						location.href="bbs";
-					}else{
-						//...작성x  (insert error )
-					}
-				}, 
-				error:function(request,status,error){
-		             console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-		        }
-			});
-			
+			$("#_form").submit();
 		});
 	});
 	</script>

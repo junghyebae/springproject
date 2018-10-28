@@ -24,7 +24,13 @@ public class BbsService {
 	}
 	
 	public BbsDto bbsDetail(int seq, String loginId) {
-		return bbsDao.bbsDetail(seq, loginId);
+		BbsDto dto = bbsDao.bbsDetail(seq, loginId);
+		
+		//조회수 증가
+		if(!dto.getId().equals(loginId)) {
+			bbsDao.bbsReadCount(seq);
+		}
+		return dto;
 	}
 	
 	public boolean bbsUpdate(BbsDto bbsDto) {
@@ -33,9 +39,5 @@ public class BbsService {
 	
 	public void bbsDelete(int seq) {
 		bbsDao.bbsDelete(seq);
-	}
-	
-	public List<BbsDto> bbsSearch(String search, String item){
-		return bbsDao.bbsSearch(search, item);
 	}
 }

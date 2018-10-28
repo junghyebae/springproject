@@ -1,9 +1,7 @@
 package com.som.project.controller;
 
 import java.util.List;
-import java.util.Locale;
 
-import javax.jws.WebParam.Mode;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.som.project.model.BbsDto;
 import com.som.project.service.BbsService;
@@ -35,11 +33,16 @@ public class BbsController {
 		return "bbs/bbswrite";
 	}
 
-	@ResponseBody
 	@RequestMapping(value = "/bbsWriteAf", method = RequestMethod.POST)
-	public int bbswriteAf(BbsDto bbsDto) {
+	public String bbswriteAf(BbsDto bbsDto, MultipartFile fileload) {
+		System.out.println("하이하이");
+		System.out.println(fileload.getOriginalFilename());
 		int res = bbsService.bbsWrite(bbsDto);
-		return res;
+		if(res==1) {
+			return "bbs/bbs";
+		}
+		//dto내용 다시 보내주기(내용삭제안되게)
+		return "bbs/bbswrite";
 	}
 	
 	@RequestMapping(value = "/bbsDetail", method = RequestMethod.GET)
@@ -61,16 +64,6 @@ public class BbsController {
 		bbsService.bbsDelete(seq);
 		return "redirect:bbs";
 	}
-	
-	@RequestMapping(value="/bbsSearch", method = RequestMethod.GET)
-	public String bbsSearch(Model model, String search, String item) {
-		List<BbsDto> bbsList = bbsService.bbsSearch(search, item);
-		model.addAttribute("bbsList", bbsList);
-		model.addAttribute("search", search);
-		model.addAttribute("item", item);
-		return "bbs/bbs";
-	}
-	
 	
 }
 

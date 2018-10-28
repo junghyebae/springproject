@@ -7,7 +7,7 @@
 	<select id="bbsList" resultType="com.som.project.model.BbsDto">
 		SELECT SEQ, ID, TITLE, CONTENT, READCOUNT, WDATE
 		FROM BBS
-		WHERE STATUS ='Y'
+		WHERE STATUS = 'Y'
 	</select>
 	
 	<insert id="bbsWrite" parameterType="com.som.project.model.BbsDto">
@@ -21,11 +21,11 @@
   		WHERE SEQ = #{seq}
   	</select>
   	
-  	<select id="bbsReadCount" parameterType="java.lang.Integer">
+<!--   	<update id="bbsReadCount" parameterType="java.lang.Integer">
   		UPDATE BBS
   		SET READCOUNT = READCOUNT + 1
   		WHERE SEQ = #{seq}
-  	</select>
+  	</update> -->
   	
 	<update id="bbsUpdate" parameterType="com.som.project.model.BbsDto">
   		UPDATE BBS
@@ -38,23 +38,5 @@
 		SET STATUS = 'N'
 		WHERE SEQ = #{seq}
 	</update>
-	
-	<select id="titleSearch" resultType="com.som.project.model.BbsDto" parameterType="java.lang.String">
-		SELECT SEQ, ID, TITLE, CONTENT, READCOUNT, WDATE
-		FROM BBS
-		WHERE STATUS = 'Y' AND TITLE = #{search} 
-	</select> 
-	
-	<select id="writerSearch" resultType="com.som.project.model.BbsDto" parameterType="java.lang.String">
-		SELECT SEQ, ID, TITLE, CONTENT, READCOUNT, WDATE
-		FROM BBS
-		WHERE STATUS = 'Y' AND  ID = #{search} 
-	</select>
 
-	<select id="totalSearch" resultType="com.som.project.model.BbsDto" parameterType="java.lang.String">
-		SELECT SEQ, ID, TITLE, CONTENT, READCOUNT, WDATE
-		FROM BBS
-		WHERE TITLE = #{search} OR ID = #{search} AND STATUS = 'Y' 
-	</select> 
-	
 </mapper>
